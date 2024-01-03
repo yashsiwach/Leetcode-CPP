@@ -7,15 +7,12 @@ public:
             int one=0,one1=0;
             for(auto it:bank[i])if(it=='1')one++;
             for(auto it:bank[j])if(it=='1')one1++;
-            cout<<one<<" "<<one1<<endl;
-            if(one1==0)
+            if(one1==0)j++;
+            else
             {
+                count+=one*one1;
+                i=j;
                 j++;
-            }
-            else{
-            count+=one*one1;
-            i=j;
-            j++;
             }
         }
         return count;

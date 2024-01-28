@@ -1,26 +1,15 @@
-
-
 class Solution {
 public:
-    int solve(int n, string s, string& str) {
-        if (str.size() == n) {
-            return 1;
-        }
-        int count = 0;
-        for (int i = 0; i < s.length(); i++) {
-            if (str.empty() || s[i] >= str.back()) {
-                str.push_back(s[i]);
-                count += solve(n, s, str);
-                str.pop_back(); // Backtrack to restore previous state
-            }
-        }
-        return count;
-    }
-
     int countVowelStrings(int n) {
-        string s = "aeiou";
-        string str;
-        int ans = solve(n, s, str);
-        return ans;
+        int a=1, e=1, i=1, o=1, u=1;
+        
+        while(--n){
+            o += u;
+            i += o;
+            e += i;
+            a += e;
+        }
+        
+        return a+e+i+o+u;
     }
 };

@@ -12,6 +12,7 @@ public:
     //     int down = solve(m, n - 1,dp);
     //     return dp[m][n]=up + down;
     // }
+            //TABULATION
     int solve(int m,int n)
     {
          vector<vector<int>>dp(m+1,vector<int>(n+1,0));
@@ -19,20 +20,22 @@ public:
          {
              for(int j=0;j<=n;j++)
              {
-                 if (i == 0 && j == 0) {
+                if (i == 0 && j == 0)
+                {
                     dp[i][j]=1;
                 }
-                else{
+                else
+                {
                     int up=0,down=0;
-                if(i>0)up = dp[i - 1][j];
-                if(j>0)down = dp[i ][j-1];
-                dp[i][j]=up + down;
-             }}
+                    if(i>0)up = dp[i - 1][j];
+                    if(j>0)down = dp[i ][j-1];
+                    dp[i][j]=up + down;
+                }
+             }
          }
          return dp[m][n];
     }
     int uniquePaths(int m, int n) {
-       
         m--,n--;
         return solve(m, n);
     }

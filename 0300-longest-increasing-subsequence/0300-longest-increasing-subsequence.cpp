@@ -1,20 +1,21 @@
 class Solution {
 public:
-    int solve(int ind, vector<int>& nums, int prev, vector<vector<int>>& dp) {
-        if (ind >= nums.size()) return 0;
-        int ans = 0;
-        if (dp[ind][prev+1] != -1) return dp[ind][prev+1];
-        for (int i = ind; i < nums.size(); i++) {
-            if (prev == -1 || nums[i] > nums[prev]) {
-                int curr = 1 + solve(i + 1, nums, i, dp); 
-                ans = max(ans, curr);
+    int lengthOfLIS(vector<int>& nums) {
+        int n=nums.size();
+        vector<int>dp(n+1,1);
+        int maxi=0,count=0;
+        for(int i=1;i<n;i++)
+        {
+            for(int j=0;j<i;j++)
+            {
+                if(nums[i]>nums[j])
+                {
+                    dp[i]=max(dp[i-1],dp[j]+1);
+                }
+                else dp[i]=dp[i-1];
             }
         }
-        return dp[ind][prev+1] = ans;
-    }
-    
-    int lengthOfLIS(vector<int>& nums) {
-        vector<vector<int>> dp(nums.size(), vector<int>(nums.size(), -1));
-        return solve(0, nums, -1, dp); 
+        for(auto it:dp)cout<<it<<" ";
+        return *max_element(dp.begin(),dp.end());
     }
 };

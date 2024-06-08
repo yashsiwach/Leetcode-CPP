@@ -1,41 +1,34 @@
 class Solution {
 public:
-int solve(int n,vector<int>&dp)
+int solve(vector<int>&v,int n,int ind,vector<int>&dp)
 {
-    if(n==0)
+    if(ind>=v.size()||n==0)return 0;
+    if(n<0)return INT_MAX-1;
+    int take=0,skip=0,mini=INT_MAX;
+    if(dp[n]!=-1)dp[n];
+    for(int i=ind;i<v.size();i++)
     {
-        return 0;
-    }
-    if(dp[n]!=-1)
-    {
-        return dp[n];
-    }
-    int ans=INT_MAX;
-    for(int i=1;i*i<=n;i++)
-    {
-        ans=min(ans,1+solve(n-i*i,dp));
-    }
-    return dp[n]=ans;
-}
-int solve2(int N)
-{
-    vector<int>dp(N+1,-1);
-    dp[N]=0;
-   
-
-    for(int n=1;n<=N;n++)
-    {
-        int ans=INT_MAX;
-        for(int i=1;i*i<=n;i++)
+        if(v[i]<=n)
         {
-            ans=min(ans,1+dp[n-i*i]);
-        };
-        dp[n]=ans;
+            int temp=1+solve(v,n-v[i],ind,dp);
+            if(temp!=INT_MAX)take=temp;
+        }
+        else break;
+        mini=min(mini,take);
     }
-    return dp[N]+1;
+    return dp[n]=mini;
 }
     int numSquares(int n) {
+        vector<int>v;
         vector<int>dp(n+1,-1);
-        return solve2(n);
+        for(int i=1;i*i<=1e4;i++){
+            v.push_back(i*i);
+        }
+        return solve(v,n,0,dp);
+        // vector<vector<int>>v(v.size()+1,vector<int>(n+1,INT_MAX));
+        // for(int i=0;i<v.size();i++)
+        // {
+        //     for(int j=)
+        // }
     }
 };

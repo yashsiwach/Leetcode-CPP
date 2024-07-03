@@ -1,24 +1,20 @@
 #include <vector>
 #include <algorithm>
-#include <climits>
 
 class Solution {
 public:
     int minDifference(std::vector<int>& nums) {
         int n = nums.size();
-        if (n <= 4) {
-            return 0;
-        }
-        
+        // If there are less than 5 numbers, we can make them all the same with 3 moves.
+        if (n < 5) return 0;
+        // Sort the numbers so we can easily find the smallest and biggest ones.
         std::sort(nums.begin(), nums.end());
-        
-        // We can remove 3 elements from either end to get the minimum difference
-        int min_diff = INT_MAX;
-        for (int i = 0; i <= 3; ++i) {
-            int current_diff = nums[n - 4 + i] - nums[i];
-            min_diff = std::min(min_diff, current_diff);
-        }
-        
-        return min_diff;
+        // Calculate the possible differences if we change:
+        int a = nums[n-4] - nums[0];  // the 3 biggest numbers
+        int b = nums[n-3] - nums[1];  // the 2 biggest and the smallest number
+        int c = nums[n-2] - nums[2];  // the biggest and the 2 smallest numbers
+        int d = nums[n-1] - nums[3];  // the 3 smallest numbers
+        // Return the smallest difference from these options.
+        return std::min({a, b, c, d});
     }
 };

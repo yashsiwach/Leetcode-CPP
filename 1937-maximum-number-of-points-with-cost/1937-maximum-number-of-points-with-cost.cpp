@@ -6,6 +6,7 @@ public:
         long long m = v[0].size();
         vector<long long> prev(v[0].begin(), v[0].end());
         vector<vector<long long>> dp(n, vector<long long>(m, 0));
+        if(n==1)return *max_element(v[0].begin(),v[0].end());
         
         for (long long i = 1; i < n; i++) {
             vector<long long> left(m), right(m);

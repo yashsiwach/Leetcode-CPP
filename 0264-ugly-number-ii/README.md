@@ -1,4 +1,4 @@
-<h2><a href="https://leetcode.com/problems/ugly-number-ii/">264. Ugly Number II</a></h2><h3>Medium</h3><hr><p>An <strong>ugly number</strong> is a positive integer whose prime factors are limited to <code>2</code>, <code>3</code>, and <code>5</code>.</p>
+<h2><a href="https://leetcode.com/problems/ugly-number-ii/?envType=daily-question&envId=2024-08-18">264. Ugly Number II</a></h2><h3>Medium</h3><hr><p>An <strong>ugly number</strong> is a positive integer whose prime factors are limited to <code>2</code>, <code>3</code>, and <code>5</code>.</p>
 
 <p>Given an integer <code>n</code>, return <em>the</em> <code>n<sup>th</sup></code> <em><strong>ugly number</strong></em>.</p>
 

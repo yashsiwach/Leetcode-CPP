@@ -2,62 +2,37 @@ class Solution {
 public:
     int robotSim(vector<int>& v, vector<vector<int>>& o) {
         set<pair<int, int>> st;
-        for(auto &it:o)
-        {
-            st.insert({it[0],it[1]});
+        for(auto &it : o) {
+            st.insert({it[0], it[1]});
         }
-        int curr = 0;
-        set<pair<int,int>>final;
+        int curr = 0;  // 0 -> North, 1 -> East, 2 -> South, 3 -> West
         pair<int, int> point = {0, 0};
+        int maxDist = 0;
+        
         for (auto& it : v) {
-            curr=curr%4;
             if (it == -1) {
-                curr++;
-                continue;
+                curr = (curr + 1) % 4;  // Right turn
             } else if (it == -2) {
-                curr--;
-                continue;
-            }
-            if (curr == 0) {
-                while (it--) {
-                    point.second++;
-                    if (st.find(point) != st.end()) {
-                        point.second--;
+                curr = (curr - 1 + 4) % 4;  // Left turn, ensuring curr is non-negative
+            } else {
+                for (int i = 0; i < it; ++i) {
+                    if (curr == 0) point.second++;  // Move North
+                    if (curr == 1) point.first++;   // Move East
+                    if (curr == 2) point.second--;  // Move South
+                    if (curr == 3) point.first--;   // Move West
+                    
+                    if (st.find(point) != st.end()) {  // Check for obstacles
+                        if (curr == 0) point.second--;
+                        if (curr == 1) point.first--;
+                        if (curr == 2) point.second++;
+                        if (curr == 3) point.first++;
                         break;
                     }
                 }
             }
-            if (curr == 1) {
-                while (it--) {
-                    point.first++;
-                    if (st.find(point) != st.end()) {
-                        point.first--;
-                        break;
-                    }
-                }
-            }
-            if (curr == 2) {
-                while (it--) {
-                    point.second--;
-                    if (st.find(point) != st.end()) {
-                        point.second++;
-                        break;
-                    }
-                }
-            }
-            if (curr == 3) {
-                while (it--) {
-                    point.first--;
-                    if (st.find(point) != st.end()) {
-                        point.first++;
-                        break;
-                    }
-                }
-            }
-            final.insert(point);
-           // cout<<point.first<<" "<<point.second<<endl;
+            maxDist = max(maxDist, point.first * point.first + point.second * point.second);
         }
-        point=*final.rbegin();
-        return (point.first*point.first)+(point.second*point.second);
+        
+        return maxDist;
     }
 };

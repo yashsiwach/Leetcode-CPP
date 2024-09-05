@@ -10,10 +10,11 @@ public:
         {
             int full=needed/n;
             int extra=needed%n;
-            //cout<<extra<<" "<<full<<endl;
+            cout<<extra<<" "<<full<<endl;
             for(int i=0;i<n;i++)
             {
-                ans.push_back(full+extra);
+                if(extra>0)ans.push_back(full+1);
+                else ans.push_back(full);
                 extra=max(0,extra-1);
             }
         }

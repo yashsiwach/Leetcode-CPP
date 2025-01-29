@@ -1,4 +1,4 @@
-<h2><a href="https://leetcode.com/problems/number-of-digit-one/">233. Number of Digit One</a></h2><h3>Hard</h3><hr><p>Given an integer <code>n</code>, count <em>the total number of digit </em><code>1</code><em> appearing in all non-negative integers less than or equal to</em> <code>n</code>.</p>
+<h2><a href="https://leetcode.com/problems/number-of-digit-one">233. Number of Digit One</a></h2><h3>Hard</h3><hr><p>Given an integer <code>n</code>, count <em>the total number of digit </em><code>1</code><em> appearing in all non-negative integers less than or equal to</em> <code>n</code>.</p>
 
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>

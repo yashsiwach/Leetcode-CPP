@@ -17,7 +17,7 @@ int rec(int i,int j,string &s,string &t)
     int numDistinct(string s, string t) {
         // memset(dp,-1,sizeof(dp));
         // return rec(0,0,s,t);
-    
+    const long long MOD = 1e9 + 7;
         long long n=s.size();
         long long m=t.size();
         if (m > n) return 0; 
@@ -28,7 +28,7 @@ int rec(int i,int j,string &s,string &t)
             for(long long j=1;j<=m;j++)
             {
                 dp[i][j]=dp[i-1][j];
-                if(s[i-1]==t[j-1])dp[i][j]+=dp[i-1][j-1];
+                if(s[i-1]==t[j-1])dp[i][j]=(dp[i][j]+dp[i-1][j-1])%MOD;
 
             }
         }
